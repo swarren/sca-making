@@ -1,0 +1,34 @@
+<camotics>
+  <!-- Note, all values are in mm regardless of 'units' option. -->
+  <!-- NC Files -->
+  <nc-files>
+    lamp.nc
+  </nc-files>
+
+  <!-- Project -->
+  <units v='INCH'/>
+
+  <!-- Renderer -->
+  <resolution v='1.130637'/>
+  <resolution-mode v='HIGH'/>
+
+  <!-- Workpiece -->
+  <automatic-workpiece v='false'/>
+  <workpiece-max v='(622.3,609.6,3.55271e-15)'/>
+  <workpiece-min v='(0,0,-19.05)'/>
+
+  <tool_table>
+    <tool length='1' number='1' radius='0.125' shape='BALLNOSE' units='INCH'>
+      Outer Indent
+    </tool>
+    <tool length='1' number='2' radius='0.125' shape='CONICAL' units='INCH'>
+      Engraver
+    </tool>
+    <tool length='1' number='3' radius='0.09375' shape='CYLINDRICAL' units='INCH'>
+      Dowel Drill
+    </tool>
+    <tool length='1' number='4' radius='0.125' shape='CYLINDRICAL' units='INCH'>
+      Rope Drill
+    </tool>
+  </tool_table>
+</camotics>
