@@ -33,8 +33,19 @@ lamp_outer_d = 81;
 lampholder_d = 29.5;
 lampholder_tab_l = 31.5;
 lampholder_tab_w = 5;
-pole_w = 65;
-pole_h = 50;
+pole_ws = [
+  65, // Larger hole in cartwheel itself
+  63.5, // Smaller hole for support on Panther pavilion main pole
+  53, // Smaller hole for support on Panther pavilion corner poles
+];
+pole_hs = [
+  50, // Larger hole in cartwheel itself
+  36, // Smaller hole for support on Panther pavilion main pole
+  36, // Smaller hole for support on Panther pavilion corner poles
+];
+pole_size_selector = 0; // Can be overridden on the cmdline
+pole_w = pole_ws[pole_size_selector];
+pole_h = pole_hs[pole_size_selector];
 
 // Calculated; don't change these
 rim_outer_r = 0.5 * rim_outer_d;
@@ -190,9 +201,24 @@ module layer3() {
     }
 }
 
-translate([-750, 0, 0]) layer1();
-layer2();
-translate([750, 0, 0]) layer3();
-translate([-750, 500, 0]) hub_layer();
-translate([0, 500, 0]) lamp_ring();
-translate([750, 500, 0]) pole_ring();
+object_selector = 0; // Can be overridden on the cmdline
+if (object_selector == 0) {
+    translate([-750, 0, 0]) layer1();
+    layer2();
+    translate([750, 0, 0]) layer3();
+    translate([-750, 500, 0]) hub_layer();
+    translate([0, 500, 0]) lamp_ring();
+    translate([750, 500, 0]) pole_ring();
+} else if (object_selector == 1) {
+    layer1();
+} else if (object_selector == 2) {
+    layer2();
+} else if (object_selector == 3) {
+    layer3();
+} else if (object_selector == 4) {
+    hub_layer();
+} else if (object_selector == 5) {
+    lamp_ring();
+} else if (object_selector == 6) {
+    pole_ring();
+}
