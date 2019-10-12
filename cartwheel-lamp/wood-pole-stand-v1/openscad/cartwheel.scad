@@ -35,12 +35,12 @@ lampholder_tab_l = 31.5;
 lampholder_tab_w = 5;
 pole_ws = [
   65, // Larger hole in cartwheel itself
-  63.5, // Smaller hole for support on Panther pavilion main pole
-  53, // Smaller hole for support on Panther pavilion corner poles
+  61, // Smaller hole for support on Panther pavilion main pole
+  51, // Smaller hole for support on Panther pavilion corner poles
 ];
 pole_hs = [
   50, // Larger hole in cartwheel itself
-  36, // Smaller hole for support on Panther pavilion main pole
+  37, // Smaller hole for support on Panther pavilion main pole
   36, // Smaller hole for support on Panther pavilion corner poles
 ];
 pole_size_selector = 0; // Can be overridden on the cmdline
