@@ -25,7 +25,7 @@ $fa = 5;
 // Parameters; edit these
 wall_w = 5;
 //rim_outer_d = 550; // Original size; large LASER cutter
-rim_outer_d = 340; // Small size; CAM5 LASER cutter
+rim_outer_d = 380; // Small size; CAM5 LASER cutter
 rim_w = 25;
 spoke_w = 25;
 hub_outer_d = 152;
