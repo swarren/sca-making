@@ -2,7 +2,9 @@
 
 More lighting for medieval atmosphere at feast and other events!
 
-This is v1 of the hanging cartwheel lamp. I designed/made this after the PVC-mounted lamp.
+This is v1 of the cartwheel lamp version that slides over a center pole, such
+as a tent pole. I designed/made this after `../center-pvc-stand-v2/` and
+`../wood-overhead-stand-v1/`.
 
 # Bill of Materials
 
