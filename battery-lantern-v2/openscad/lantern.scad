@@ -21,18 +21,35 @@
  */
 
 $fn=72;
-outer_r = 4 * 25.4 / 2;
-rod_r = (3 / 16) * 25.4 / 2;
-rod_placement_r = outer_r - (rod_r + (0.5 * 25.4));
+outer_r = 4.5 * 25.4 / 2;
+rod_r = (1 / 4) * 25.4 / 2;
+rod_placement_r = outer_r - (rod_r + (0.3 * 25.4));
 load_hole_r = 25;
 tab_r = load_hole_r + 5;
 tab_w = 20;
+rope_r = (1 / 4) * 25.4 / 2;
+rope_placement_r = outer_r - (rope_r + (1 * 25.4));
+sheet_thick = 2;
+
+window_width = 2 * ((rod_placement_r * sin(30)) - rod_r);
+echo("Window width:", window_width); // 33.655
+
+module sheet_cutouts() {
+    sx = rod_placement_r * cos(30);
+    sy = rod_placement_r * sin(30);
+    rh = sy * 2;
+    for (a = [0:60:360]) {
+        rotate(a)
+            translate([sx, 0])
+            square(size=[sheet_thick, rh], center=true);
+    }
+};
 
 module basic_layer() {
     difference() {
         circle(r=outer_r);
 
-        for (a = [0:60:360]) {
+        for (a = [30:60:390]) {
             translate([rod_placement_r * cos(a), rod_placement_r * sin(a)])
                 circle(r=rod_r, center=true);
         }
@@ -89,6 +106,14 @@ module layer_1_lamp() {
         basic_layer();
         load_hole();
         layer_1_cutout();
+        sheet_cutouts();
+    }
+}
+
+module layer_2_tabs() {
+    intersection() {
+        circle(r=tab_r, center=true);
+        square(size=[tab_r * 3, tab_w], center=true);
     }
 }
 
@@ -96,12 +121,16 @@ module layer_2_insert() {
     difference() {
         union() {
             circle(r=load_hole_r, center=true);
-            intersection() {
-                circle(r=tab_r, center=true);
-                square(size=[tab_r * 3, tab_w], center=true);
-            }
+            layer_2_tabs();
         }
         switch_hole_nut(false);
+    }
+}
+
+module layer_2_tabs_scored() {
+    difference() {
+        layer_2_tabs();
+        circle(r=load_hole_r, center=true);
     }
 }
 
@@ -137,32 +166,84 @@ module layer_3_lamp() {
     }
 }
 
-module layer_top() {
-    basic_layer();
+module rope_holes() {
+    for (a = [0:180:180]) {
+        translate([rope_placement_r * cos(a), rope_placement_r * sin(a)])
+            circle(r=rope_r, center=true);
+    }
+}
+
+module basic_layer_top() {
+    difference() {
+        basic_layer();
+        rope_holes();
+    }
+}
+
+module layer_top_1() {
+    basic_layer_top();
+}
+
+module layer_top_2() {
+    basic_layer_top();
+}
+
+module layer_top_3() {
+    difference() {
+        basic_layer_top();
+        sheet_cutouts();
+    }
+}
+
+module top() {
+  if (array) {
+    for (y = [0:4]) {
+        for (x = [0:4]) {
+            translate([x * 2 * (outer_r + 1), y * 2 * (outer_r + 1)])
+              children(0);
+        }
+    }
+  } else {  
+    children(0);
+  }
 }
 
 object_selector = 0; // Can be overridden on the cmdline
-if (object_selector == 0) {
-    spacing = outer_r * 2.25;
+array = 0; // Can be overridden on the cmdline
 
-    translate([0 * spacing, 0, 0]) layer_1_lamp();
-    translate([1 * spacing, 0, 0]) layer_2_lamp();
-    translate([2 * spacing, 0, 0]) layer_3_lamp();
+top() {
+    if (object_selector == 0) {
+        spacing = outer_r * 2.25;
 
-    translate([0 * spacing, 0, 0]) layer_1_insert();
-    translate([1 * spacing, 0, 0]) layer_2_insert();
-    translate([2 * spacing, 0, 0]) layer_3_insert();
+        translate([1 * spacing, -0.75 * spacing, 0]) layer_2_tabs_scored();
 
-    translate([0 * spacing, 1 * spacing, 0]) layer_top();
-} else if (object_selector == 1) {
-    layer_1_lamp();
-    layer_1_insert();
-} else if (object_selector == 2) {
-    layer_2_lamp();
-    layer_2_insert();
-} else if (object_selector == 3) {
-    layer_3_lamp();
-    layer_3_insert();
-} else if (object_selector == 4) {
-    layer_top();
+        translate([0 * spacing, 0, 0]) layer_1_lamp();
+        translate([1 * spacing, 0, 0]) layer_2_lamp();
+        translate([2 * spacing, 0, 0]) layer_3_lamp();
+
+        translate([0 * spacing, 0, 0]) layer_1_insert();
+        translate([1 * spacing, 0, 0]) layer_2_insert();
+        translate([2 * spacing, 0, 0]) layer_3_insert();
+
+        translate([0 * spacing, 1 * spacing, 0]) layer_top_1();
+        translate([1 * spacing, 1 * spacing, 0]) layer_top_2();
+        translate([2 * spacing, 1 * spacing, 0]) layer_top_3();
+    } else if (object_selector == 1) {
+        layer_1_lamp();
+        layer_1_insert();
+    } else if (object_selector == 2) {
+        layer_2_lamp();
+        layer_2_insert();
+    } else if (object_selector == 3) {
+        layer_3_lamp();
+        layer_3_insert();
+    } else if (object_selector == 4) {
+        layer_top_1();
+    } else if (object_selector == 5) {
+        layer_top_2();
+    } else if (object_selector == 6) {
+        layer_top_3();
+    } else if (object_selector == 7) {
+        layer_2_tabs_scored();
+    }
 }

@@ -20,25 +20,35 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-# LED mount gets 3D-printed, so needs STL
-openscad \
-    --render \
-    -o led-mount.stl \
-    led-mount.scad
-
 # Lantern parts get LASER cut, so need SVG
 shapes=()
+shapes+=("all:0")
 shapes+=("base-layer1:1")
 shapes+=("base-layer2:2")
 shapes+=("base-layer3:3")
-shapes+=("top:4")
-for shape in "${shapes[@]}"; do
-    IFS=: read name id <<< "${shape}"
-    openscad \
-        --render \
-        -o ${name}.svg \
-        -Dobject_selector=${id} \
-        lantern.scad
+shapes+=("top-layer1:4")
+shapes+=("top-layer2:5")
+shapes+=("top-layer3:6")
+shapes+=("base-layer2-tabs-scored:7")
+
+for array in 0 1; do
+    if [ $array -eq 1 ]; then
+      array_fn=-array
+    else
+      array_fn=
+    fi
+    for shape in "${shapes[@]}"; do
+        IFS=: read name id <<< "${shape}"
+        if [ $array -eq 1 ] && [ $id -eq 0 ]; then
+            continue
+        fi
+        openscad \
+            --render \
+            -o ${name}${array_fn}.svg \
+            -Dobject_selector=${id} \
+            -Darray=${array} \
+            lantern.scad
+    done
 done
 
 sed -E '/^<svg /s/ width="([0-9]+)" / width="\1mm" /' -i *.svg

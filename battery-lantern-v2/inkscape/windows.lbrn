@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightBurnProject AppVersion="0.9.07" MaterialHeight="0">
+    <VariableText>
+        <Start Value="0"/>
+        <End Value="999"/>
+        <Current Value="0"/>
+        <Increment Value="1"/>
+        <AutoAdvance Value="0"/>
+    </VariableText>
+    <CutSetting type="Cut">
+        <index Value="0"/>
+        <name Value="C00"/>
+        <minPower Value="60"/>
+        <maxPower Value="60"/>
+        <minPower2 Value="10"/>
+        <maxPower2 Value="20"/>
+        <speed Value="25"/>
+        <kerf Value="0"/>
+        <zOffset Value="0"/>
+        <enableLaser1 Value="1"/>
+        <enableLaser2 Value="0"/>
+        <startDelay Value="0"/>
+        <endDelay Value="0"/>
+        <throughPower Value="0"/>
+        <throughPower2 Value="0"/>
+        <enableCutThrough Value="0"/>
+        <priority Value="0"/>
+        <frequency Value="20000"/>
+        <overrideFrequency Value="0"/>
+        <PPI Value="0"/>
+        <enablePPI Value="0"/>
+        <doOutput Value="1"/>
+        <hide Value="0"/>
+        <runBlower Value="1"/>
+        <blowerSpeedOverride Value="0"/>
+        <blowerSpeedPercent Value="100"/>
+        <overcut Value="0"/>
+        <rampLength Value="0"/>
+        <numPasses Value="1"/>
+        <zPerPass Value="0"/>
+        <perforate Value="0"/>
+        <perfLen Value="0.01"/>
+        <perfSkip Value="0.01"/>
+        <dotMode Value="0"/>
+        <dotTime Value="1"/>
+        <dotSpacing Value="0.1"/>
+        <scanOpt Value="mergeAll"/>
+        <bidir Value="1"/>
+        <crossHatch Value="0"/>
+        <overscan Value="0"/>
+        <overscanPercent Value="2.5"/>
+        <floodFill Value="0"/>
+        <interval Value="0.085"/>
+        <angle Value="0"/>
+    </CutSetting>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 22 64</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 64 64</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 106.2 64</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 149 64</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 191 64</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 233 64</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 275 64</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 22 190</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 64 190</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 106.2 190</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 149 190</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 191 190</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 233 190</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>-1 0 0 1 275 190</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>4.37114e-8 1 1 -4.37114e-8 66 274</XForm>
+    </Shape>
+    <Shape Type="Rect" CutIndex="0" W="40" H="124.00001" Cr="0">
+        <XForm>4.37114e-8 1 1 -4.37114e-8 192 274</XForm>
+    </Shape>
+    <Notes ShowOnLoad="0" Notes=""/>
+</LightBurnProject>
