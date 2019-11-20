@@ -28,7 +28,7 @@ load_hole_r = 25;
 tab_r = load_hole_r + 5;
 tab_w = 20;
 rope_r = (1 / 4) * 25.4 / 2;
-rope_placement_r = outer_r - (rope_r + (1 * 25.4));
+rope_placement_r = outer_r - (rope_r + (0.65 * 25.4));
 sheet_thick = 2;
 
 window_width = 2 * ((rod_placement_r * sin(30)) - rod_r);
@@ -168,7 +168,7 @@ module layer_3_lamp() {
 
 module rope_holes() {
     for (a = [0:180:180]) {
-        translate([rope_placement_r * cos(a), rope_placement_r * sin(a)])
+        translate([rope_placement_r * cos(a + 30), rope_placement_r * sin(a + 30)])
             circle(r=rope_r, center=true);
     }
 }
