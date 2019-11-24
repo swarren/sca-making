@@ -31,27 +31,63 @@ clip_cut_r_outer = mount_r - 2;
 clip_cut_r_inner = clip_cut_r_outer - 2;
 clip_hole_w = 8;
 
-module ledmount_bottom() {
+module wire_routing(is_top) {
+    angle_incr = 5;
+    wire_r = 2.5 / 2;
+    curve_r = 3.5;
+    curve_end_angle = 85;
+    straight_len = is_top ? 14 : 7;
+    straight_x = straight_len * sin(curve_end_angle);
+    straight_y = straight_len * cos(curve_end_angle);
+    rotate(-15)
+        translate([mount_r - curve_r, 0, 0]) {
+        for (angle = [0:angle_incr:curve_end_angle - angle_incr]) {
+            hull() {
+                rotate(angle)
+                    translate([curve_r + wire_r, 0, 0])
+                    circle(r=wire_r);
+                rotate(angle + angle_incr)
+                    translate([curve_r + wire_r, 0, 0])
+                    circle(r=wire_r);
+            }
+        }
+        hull() {
+            rotate(curve_end_angle)
+                translate([curve_r + wire_r, 0, 0])
+                circle(r=wire_r);
+            translate([-straight_x, straight_y])
+                rotate(curve_end_angle)
+                translate([curve_r + wire_r, 0, 0])
+                circle(r=wire_r);
+        }
+    }
+}
+
+module led_mount_base() {
     difference() {
         circle(r=mount_r, center=true);
         translate([-pcb_w, -pcb_t])
             square(size=[pcb_w, pcb_t]);
-        translate([mount_r - edge_cut_l, -edge_cut_w / 4])
-            square(size=[edge_cut_l, edge_cut_w / 2]);
-        translate([mount_r - (edge_cut_w / 2), 0])
-            polygon([[0, 0], [edge_cut_w, edge_cut_w], [edge_cut_w, -edge_cut_w]]);
     }
 }
 
-module ledmount_top() {
+module led_mount_bottom() {
     difference() {
-        ledmount_bottom();
+        led_mount_base();
+        wire_routing(0);
+    }
+}
+
+module led_mount_top() {
+    difference() {
+        led_mount_base();
+        wire_routing(1);
         intersection() {
             difference() {
                 circle(r=clip_cut_r_outer, center=true);
                 circle(r=clip_cut_r_inner, center=true);
             }
-            for (angle = [-24, 24, 90, 180, 270]) {
+            for (angle = [-23, 23, 90, 180, 270]) {
                 rotate(angle)
                     translate([clip_cut_r_inner - 5, -clip_hole_w / 2])
                     square(size=[10, clip_hole_w]);
@@ -64,10 +100,10 @@ object_selector = 0; // Can be overridden on the cmdline
 
 if (object_selector == 0) {
     spacing = mount_r * 2.25;
-    ledmount_top();
-    translate([spacing, 0]) ledmount_bottom();
+    led_mount_top();
+    translate([spacing, 0]) led_mount_bottom();
 } else if (object_selector == 1) {
-    ledmount_top();
+    led_mount_top();
 } else {
-    ledmount_bottom();
+    led_mount_bottom();
 }
