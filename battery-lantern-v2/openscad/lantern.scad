@@ -135,8 +135,21 @@ module layer_2_tabs_scored() {
 }
 
 module layer_2_cutout() {
-    offset(delta=1)
-        circle(r=tab_r, center=true);
+    difference() {
+        offset(delta=1)
+            circle(r=tab_r, center=true);
+        difference() {
+            rotate(40)
+                offset(delta=2)
+                layer_2_insert();
+            rotate(60)
+                offset(delta=2)
+                layer_2_insert();
+            offset(delta=1)
+                layer_2_insert();
+            offset(delta=1) layer_1_insert();
+        }
+    }
 }
 
 module layer_2_lamp() {
