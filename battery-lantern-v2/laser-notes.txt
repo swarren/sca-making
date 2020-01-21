@@ -1,0 +1,8 @@
+Light colored Home Depot MDF:
+  10mm/s 60% power 5mm focus
+  Cuts perfectly
+
+Dark colored Home Depot MDF:
+  8mm/s 70% power 5mm focus
+  Cuts with a ton of charring, with variability in cut quality based on bow in
+  LASER cutter bed.

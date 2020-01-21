@@ -1,0 +1,11 @@
+Fixes needed for v2a:
+
+PCB:
+- Silscreen on both sides of PCB, and both top and bottom of insert into LED holder.
+- Tabs on side for LED holder to sit on and align easily.
+- Spread connector holes to reduce possibility of bent wires bridging pins.
+- Widen slightly to avoid hot glue getting in side holes.
+- Spread copper pours over bottom of PCB.
+
+LED holder:
+- Redo wire routing cutout so it's more useful.
