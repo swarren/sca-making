@@ -114,6 +114,40 @@ static void send(uint8_t val)
 
 static void send8(uint8_t val) {
 	reset();
+#if 0 // Rainbow (GRB LED order)
+	// Red
+	send(0);
+	send(val);
+	send(0);
+	// Yellow
+	send(val);
+	send(val);
+	send(0);
+	// Green
+	send(val);
+	send(0);
+	send(0);
+	// Dark White
+	send(val / 2);
+	send(val / 2);
+	send(val / 2);
+	// Cyan
+	send(val);
+	send(0);
+	send(val);
+	// Blue
+	send(0);
+	send(0);
+	send(val);
+	// Purple
+	send(0);
+	send(val);
+	send(val);
+	// White
+	send(val);
+	send(val);
+	send(val);
+#else
 	for (int led = 0; led < 8; led++) {
 #if 0 // Yellow
 		send((val / 2) + (val / 4));
@@ -123,12 +157,17 @@ static void send8(uint8_t val) {
 		send(val);
 		send(val);
 		send(val / 8);
+#elif 0 // Purple
+		send(0);
+		send(val);
+		send(val);
 #else // Full
 		send(val);
 		send(val);
 		send(val);
 #endif
 	}
+#endif
 }
 
 int main()

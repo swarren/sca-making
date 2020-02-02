@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec make -C Release
+exec make -C Release all
