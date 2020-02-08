@@ -225,7 +225,8 @@ object_selector = 0; // Can be overridden on the cmdline
 array = 0; // Can be overridden on the cmdline
 
 top() {
-    if (object_selector == 0) {
+    if (object_selector == -1) {
+    } else if (object_selector == 0) {
         spacing = outer_r * 2.25;
 
         translate([1 * spacing, -0.75 * spacing, 0]) layer_2_tabs_scored();

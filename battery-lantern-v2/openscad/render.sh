@@ -51,5 +51,10 @@ for array in 0 1; do
     done
 done
 
+openscad \
+    --render \
+    -o packed.svg \
+    packed.scad
+
 sed -E '/^<svg /s/ width="([0-9]+)" / width="\1mm" /' -i *.svg
 sed -E '/^<svg /s/ height="([0-9]+)" / height="\1mm" /' -i *.svg

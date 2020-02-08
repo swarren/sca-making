@@ -98,7 +98,8 @@ module led_mount_top() {
 
 object_selector = 0; // Can be overridden on the cmdline
 
-if (object_selector == 0) {
+if (object_selector == -1) {
+} else if (object_selector == 0) {
     spacing = mount_r * 2.25;
     led_mount_top();
     translate([spacing, 0]) led_mount_bottom();
