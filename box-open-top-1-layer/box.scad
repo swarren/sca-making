@@ -140,6 +140,15 @@ module box_parts() {
         support(support_w);
     projection(cut=true)  translate([(box_w * 0.5) + (box_d * 1.0) + 20 + wood_thickness, -(box_h * 0.5 + 10 + support_t * 2 + 10), 0])
         support(support_w);
+
+    projection(cut=true) translate([box_w * 0.5 + 10 + wood_thickness, -(box_h * 0.5 + 40 + support_t * 2), 0])
+        cube([box_h - (2 * wood_thickness), wood_thickness, wood_thickness]);
+    projection(cut=true) translate([box_w * 0.5 + 10 + wood_thickness, -(box_h * 0.5 + 50 + support_t * 2 + wood_thickness * 1), 0])
+        cube([box_h - (2 * wood_thickness), wood_thickness, wood_thickness]);
+    projection(cut=true) translate([box_w * 0.5 + 10 + wood_thickness, -(box_h * 0.5 + 60 + support_t * 2 + wood_thickness * 2), 0])
+        cube([box_h - (2 * wood_thickness), wood_thickness, wood_thickness]);
+    projection(cut=true) translate([box_w * 0.5 + 10 + wood_thickness, -(box_h * 0.5 + 70 + support_t * 2 + wood_thickness * 3), 0])
+        cube([box_h - (2 * wood_thickness), wood_thickness, wood_thickness]);
 }
 
 box_parts();
